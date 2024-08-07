@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 23:21:48 by nicolas           #+#    #+#             */
-/*   Updated: 2024/08/06 21:40:23 by nicolas          ###   ########.fr       */
+/*   Created: 2024/08/06 21:36:49 by nicolas           #+#    #+#             */
+/*   Updated: 2024/08/06 21:40:16 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#include "../includes/HumanB.hpp"
 
-# include "Weapon.hpp"
-# include <string>
-# include <iostream>
+void HumanB::attack(void) const {
+	if (_weapon) {
+		std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
+	} else {
+		std::cout << _name << " has no weapon to attack with!" << std::endl;
+	}
+}
 
-class HumanB {
-
-	public:
-		HumanB(const std::string& name) : _name(name), _weapon(NULL) {};
-
-		void setWeapon(Weapon& weapon);
-
-		void attack(void) const;
-
-	private:
-		std::string _name;
-		Weapon* _weapon; // Pointer to Weapon
-};
-
-#endif
+void HumanB::setWeapon(Weapon& weapon) {
+	_weapon = &weapon;
+}

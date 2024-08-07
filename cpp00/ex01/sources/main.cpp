@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "../includes/Contact.hpp"
-#include "../includes/PhoneBook.hpp"
+#include "../includes/Contact.class.hpp"
+#include "../includes/PhoneBook.class.hpp"
 #include <limits> 
 
 bool isValidPhoneNumber(const std::string& phoneNumber) {

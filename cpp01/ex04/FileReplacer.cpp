@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   FileReplacer.cpp                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/06 22:15:43 by nicolas           #+#    #+#             */
+/*   Updated: 2024/08/06 23:49:03 by nicolas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -21,27 +33,49 @@ void replaceInFile(const std::string& filename, const std::string& s1, const std
 	std::string line;
 	while (std::getline(inputFile, line)) {
 		size_t pos = 0;
-		// Substitui todas as ocorrências de s1 por s2
+		std::string newLine;
 		while ((pos = line.find(s1, pos)) != std::string::npos) {
-			line.replace(pos, s1.length(), s2);
-			pos += s2.length(); // Avança para além da nova string
+			// Adiciona a parte da linha antes da ocorrência de s1
+			newLine += line.substr(0, pos);
+			// Adiciona s2 no lugar de s1
+			newLine += s2;
+			// Avança a posição na linha além de s1
+			line = line.substr(pos + s1.length());
+			// Reinicia pos para começar a procurar novamente do início da nova linha
+			pos = 0;
 		}
-		outputFile << line << std::endl;
+		// Adiciona qualquer parte restante da linha que não contenha s1
+		newLine += line;
+		outputFile << newLine << std::endl;
 	}
 
 	inputFile.close();
 	outputFile.close();
 }
 
+int haveReadPermissionsInFile(std::string filename) {
+	std::ifstream fileCheck(filename.c_str());
+	if (!fileCheck.is_open()) {
+		std::cerr << "Error: No read permission for file " << filename << std::endl;
+		return false;
+	}
+	fileCheck.close();
+	return true;
+}
+
 int main(int argc, char* argv[]) {
 	if (argc != 4) {
-		std::cerr << "Usage: " << argv[0] << " <filename> <string1> <string2>" << std::endl;
+		std::cerr << "Error: Usage --> " << argv[0] << " <filename> <string1> <string2>" << std::endl;
 		return 1;
 	}
 
 	std::string filename = argv[1];
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
+
+	 if (!haveReadPermissionsInFile(filename)) {
+		return 1;
+	}
 
 
 	if (s1.empty()) {

@@ -1,3 +1,4 @@
-Hello universe! Welcome to the universe of C++ programming.
-In this universe, you will learn a lot about C++.
-Make the universe a better place with your skills!
+Ola aqui irei substituir as palavra que desejo
+as palavras que desejo substituir é "desejo"
+isso fará com que eu substitua corretamente
+todas as palavras que desejo

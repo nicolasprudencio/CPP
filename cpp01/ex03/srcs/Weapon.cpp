@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 00:32:29 by nicolas           #+#    #+#             */
-/*   Updated: 2024/07/23 21:33:33 by nicolas          ###   ########.fr       */
+/*   Created: 2024/08/06 21:40:48 by nicolas           #+#    #+#             */
+/*   Updated: 2024/08/06 21:43:02 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "./Contact.hpp"
+#include "../includes/Weapon.hpp"
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+void Weapon::setType(const std::string& type) {
+	_type = type;
+}
 
-class PhoneBook {
-public:
-	PhoneBook();
-	~PhoneBook();
-
-
-	void addContact(const Contact& contact);
-
-	void displayContacts();
-
-	void displayContact(int index);
-
-	private:
-		static const int maxContacts = 8;
-		Contact _contacts[maxContacts];
-		int _currentIndex;
-		int _size;
-};
-
-#endif
+std::string Weapon::getType() const {
+	return _type;
+}

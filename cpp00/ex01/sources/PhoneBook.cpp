@@ -6,14 +6,14 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 22:34:37 by nicolas           #+#    #+#             */
-/*   Updated: 2024/07/23 21:34:07 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/07/31 23:47:58 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-#include "../includes/PhoneBook.hpp"
-#include "../includes/Contact.hpp"
+#include "../includes/PhoneBook.class.hpp"
+#include "../includes/Contact.class.hpp"
 
 PhoneBook::PhoneBook() : _currentIndex(0), _size(0) {}
 PhoneBook::~PhoneBook() {}
