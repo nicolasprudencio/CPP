@@ -1,9 +1,5 @@
 #include "ClapTrap.hpp"
 
-std::string ClapTrap::getName() {
-	return _name;
-}
-
 
 ClapTrap::ClapTrap() {}
 
@@ -15,11 +11,23 @@ ClapTrap:: ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoin
 	std::cout << _name << " got up" << std::endl;
 }
 
+std::string ClapTrap::getName() {
+	return _name;
+}
+
 void ClapTrap::attack(ClapTrap &target, const int attackDamage) {
 	std::cout << _name << " attacks " << target.getName() << " causing a damage of "<< attackDamage << std::endl;
 
 	_energyPoints -= 1;
 	target.takeDamage(attackDamage);
+}
+
+void ClapTrap::setAttackDamage(int attackDamage) {
+	_attackDamage = attackDamage;
+}
+
+int ClapTrap::getAttackDamage() {
+	return _attackDamage;
 }
 
 void ClapTrap::takeDamage(int amount) {
@@ -29,6 +37,7 @@ void ClapTrap::takeDamage(int amount) {
 	}
 }
 
-void ClapTrap::getHitPoints() {
+int ClapTrap::getHitPoints() {
 	std::cout << _name << " has " << _hitPoints << " hit points of life!" << std::endl;
+	return _hitPoints;
 }
