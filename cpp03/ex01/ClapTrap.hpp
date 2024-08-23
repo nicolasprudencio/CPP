@@ -17,11 +17,12 @@ class ClapTrap {
 		void beRepaired(int amount);
 		int getHitPoints();
 		std::string getName();
-		void setAttackDamage(int attackDamage);
 		int getAttackDamage();
+		void setAttackDamage(int attackDamage);
+		void setEnergyPoints(int attackDamage);
+		//implementar beRepaired
 
-	private:
-
+	protected:
 		std::string _name;
 		int _hitPoints;
 		int _energyPoints;
