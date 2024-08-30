@@ -3,11 +3,14 @@
 ScavTrap::ScavTrap(): ClapTrap() {};
 
 ScavTrap::ScavTrap(std::string name): ClapTrap(name) {
-	setAttackDamage(20);
+	std::string born_message;
+
 	if (name == "Luffy") {
-		std::cout << name << " Gear Fourth!" << std::endl;
+		born_message = RED + name + " Gear Fours!" + RESET;
+		std::cout << born_message << std::endl;
 	} else {
-		std::cout << name << " Is in ito ito no Mi awaken!" << std::endl;
+		born_message = PURPLE + name + " Is in ito ito no Mi awaken!" + RESET;
+		std::cout << born_message << std::endl;
 	}
 };
 
@@ -32,12 +35,26 @@ void ScavTrap::guardGate() {
 }
 
 void ScavTrap::attack(ScavTrap &target, const int attackDamage) {
-	if (_name == "Luffy") {
-		std::cout << _name << " Gomu Gomu Kong Gun!  " << target._name << " causing a damage of "<< attackDamage << std::endl;
-	} else {
-		std::cout << _name << " Senbon no Ya: Flap Thread!" << std::endl;
+	std::string luffy;
+	std::string doflamingo;
+
+	if (_energyPoints <= 0 || _hitPoints <= 0) {
+		return;
 	}
 
-	setEnergyPoints(-3);
+	if (_name == "Luffy") {
+		luffy = RED + _name + RESET;
+		doflamingo = PURPLE + target._name + RESET;
+
+		std::cout << luffy << " Gomu Gomu Kong Gun! causing " << attackDamage << " damage to " + doflamingo << std::endl;
+	} else {
+		doflamingo = PURPLE + _name + RESET;
+		luffy = RED + target._name + RESET;
+		
+		std::cout << doflamingo << " Senbon no Ya: Flap Thread! causing " << attackDamage << " damage to " + luffy << std::endl;
+
+	}
+
+	_energyPoints -= 1;
 	target.takeDamage(attackDamage);
 }

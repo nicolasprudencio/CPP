@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include "Macros.hpp"
 
 class ClapTrap {
 	public:
@@ -15,12 +16,13 @@ class ClapTrap {
 		void attack(ClapTrap &target, const int attackDamage);
 		void takeDamage(int amount);
 		void beRepaired(int amount);
+
 		int getHitPoints();
+		int getEnergyPoints();
 		std::string getName();
 		int getAttackDamage();
 		void setAttackDamage(int attackDamage);
 		void setEnergyPoints(int attackDamage);
-		//implementar beRepaired
 
 	protected:
 		std::string _name;

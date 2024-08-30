@@ -4,6 +4,7 @@
 # include <iostream>
 # include <string>
 # include "ClapTrap.hpp"
+# include "Macros.hpp"
 
 class ScavTrap: public ClapTrap {
 	public:

@@ -3,25 +3,27 @@
 int main() {
 	ScavTrap Luffy("Luffy");
 	ScavTrap Doflamingo("Doflamingo");
-	ScavTrap Luffy2;
+	int luffyLife;
+	int doflamingoLife;
 
 	Luffy.setAttackDamage(5);
 	Doflamingo.setAttackDamage(4);
-	Luffy2 = Luffy;
-
-
 
 	int luffyDamage = Luffy.getAttackDamage();
 	int DoflamingoDamage = Doflamingo.getAttackDamage();
+	std::cout << std::endl << std::endl;
 
-	while (Luffy.getHitPoints() > 0 && Doflamingo.getHitPoints() > 0) {
+	while ((luffyLife = Luffy.getHitPoints()) > 0 &&
+		(doflamingoLife = Doflamingo.getHitPoints()) > 0)
+	{
 		Doflamingo.attack(Luffy, DoflamingoDamage);
-		Doflamingo.setAttackDamage(DoflamingoDamage);
 		Luffy.attack(Doflamingo, luffyDamage);
-		Luffy.setAttackDamage(luffyDamage);
-		luffyDamage = luffyDamage * 2;
-		DoflamingoDamage = DoflamingoDamage * 1.3;
-	}
+		std::cout << std::endl << std::endl;
 
+		if (luffyLife <= 10)
+			Luffy.beRepaired(3);
+		if (doflamingoLife <= 10)
+			Doflamingo.beRepaired(3);
+	}
 	return 0;
 }

@@ -15,15 +15,14 @@ class ClapTrap {
 		void attack(ClapTrap &target, const int attackDamage);
 		void takeDamage(int amount);
 		void beRepaired(int amount);
-	
 		int getHitPoints();
 		std::string getName();
-		void setAttackDamage(int attackDamage);
 		int getAttackDamage();
-		int getEnergyPoints();
+		void setAttackDamage(int attackDamage);
+		void setEnergyPoints(int attackDamage);
+		//implementar beRepaired
 
-	private:
-
+	protected:
 		std::string _name;
 		int _hitPoints;
 		int _energyPoints;
