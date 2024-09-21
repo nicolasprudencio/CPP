@@ -12,7 +12,7 @@ int main(void)
 		bureaucrat->incrementGrade();
 		bureaucrat2->decrementGrade();
 	} catch (GradeTooLowException &e) {
-        std::cout << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	} catch (GradeTooHighException &e) {
 		std::cout << e.what() << std::endl;
 	}

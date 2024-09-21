@@ -2,27 +2,13 @@
 # define FORM_HPP
 
 # include <iostream>
-# include <stdexcept>
+# include "Exceptions.hpp"
 
 class Bureaucrat;
 
-class GradeTooHighToSignException: public std::exception {
-	public:
-		virtual const char* what() const throw() {
-			return "Grade is too high and it's impossible to sign the form";
-		}
-};
-
-class GradeTooLowToSignException: public std::exception {
-	public:
-		virtual const char* what() const throw() {
-			return "Grade is too low and it's impossible to sign the form";
-		}
-};
-
 class Form {
 	public:
-		Form(const std::string name, int gradeToSign, int gradeToExecute);
+		Form(const std::string name, int gradeToSign, int gradeToExecute) throw(GradeTooHighException, GradeTooLowException);
 		~Form();
 		Form(const Form &other);
 		Form& operator=(const Form &other);
@@ -32,7 +18,7 @@ class Form {
 		int getGradeToExecute() const;
 		bool getIsSigned() const;
 		bool isSigned() const;
-		void beSigned(Bureaucrat &bureaucrat);
+		void beSigned(Bureaucrat &bureaucrat) throw(GradeTooLowException);
 
 	private:
 		std::string const _name;

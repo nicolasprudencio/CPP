@@ -3,18 +3,21 @@
 
 # include <iostream>
 # include "Exceptions.hpp"
+# include "AForm.hpp"
+
 
 class Bureaucrat {
 	public:
 		Bureaucrat(const std::string name, int grade);
-		Bureaucrat(Bureaucrat &other);
 		~Bureaucrat();
+		Bureaucrat(Bureaucrat &other);
 		Bureaucrat& operator=(Bureaucrat &other);
 
 		std::string getName() const;
 		int getGrade() const;
 		void incrementGrade() throw(GradeTooHighException);
 		void decrementGrade() throw(GradeTooLowException);
+		void signForm(AForm &form);
 
 	private:
 		std::string const _name;

@@ -1,7 +1,7 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(const std::string name, int gradeToSign, int gradeToExecute)
+AForm::AForm(const std::string name, int gradeToSign, int gradeToExecute)
 	throw(GradeTooHighException, GradeTooLowException)
 	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 	if (gradeToSign < 1 || gradeToExecute < 1) {
@@ -14,17 +14,17 @@ Form::Form(const std::string name, int gradeToSign, int gradeToExecute)
 	std::cout << "Form " << _name << " created." << std::endl;
 }
 
-Form::~Form() {
+AForm::~AForm() {
 	std::cout << _name << " destroyed." << std::endl;
 }
 
-Form::Form(const Form &other) 
+AForm::AForm(const AForm &other) 
 	: _name(other._name), _isSigned(other._isSigned),_gradeToSign(other._gradeToSign),
 	_gradeToExecute(other._gradeToExecute) {
 	std::cout << "Form Copy constructor called" << std::endl;
 }
 
-Form& Form::operator=(const Form &other) {
+AForm& AForm::operator=(const AForm &other) {
 	std::cout << "Form Copy assignment operator called" << std::endl;
 	if (this != &other) {
 	
@@ -33,26 +33,26 @@ Form& Form::operator=(const Form &other) {
 	return *this;
 }
 
-std::string Form::getName() const {
+std::string AForm::getName() const {
 	return _name;
 }
 
-int Form::getGradeToSign() const {
+int AForm::getGradeToSign() const {
 	return _gradeToSign;
 }
 
-int Form::getGradeToExecute() const {
+int AForm::getGradeToExecute() const {
 	return _gradeToExecute;
 }
 
-void Form::beSigned(Bureaucrat &bureaucrat) throw(GradeTooLowException) {
+void AForm::beSigned(Bureaucrat &bureaucrat) throw(GradeTooLowException) {
 	if (bureaucrat.getGrade() > _gradeToSign) {
 		throw GradeTooLowException();
 	}
 	_isSigned = true;
 }
 
-bool Form::getIsSigned() const {
+bool AForm::getIsSigned() const {
 	return _isSigned;
 }
 

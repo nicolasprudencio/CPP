@@ -2,22 +2,9 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
-# include <stdexcept>
+# include "Exceptions.hpp"
 # include "Form.hpp"
 
-class GradeTooHighException: public std::exception {
-	public:
-		virtual const char* what() const throw() {
-			return "Grade is too high";
-		}
-};
-
-class GradeTooLowException: public std::exception {
-	public:
-		virtual const char* what() const throw() {
-			return "Grade is too low";
-		}
-};
 
 class Bureaucrat {
 	public:

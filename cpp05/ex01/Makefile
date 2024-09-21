@@ -6,12 +6,12 @@
 #    By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/17 22:50:29 by nicolas           #+#    #+#              #
-#    Updated: 2024/09/13 21:08:54 by nicolas          ###   ########.fr        #
+#    Updated: 2024/09/14 16:10:57 by nicolas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=bureaucrat
-SRCS=Bureaucrat.cpp Form.cpp main.cpp
+SRCS=Bureaucrat.cpp Form.cpp Exceptions.cpp main.cpp
 GREEN=\033[1;32m
 BLUE=\033[1;34m
 RES=\033[0m
