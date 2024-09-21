@@ -6,12 +6,12 @@
 #    By: nprudenc <nprudenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/17 22:50:29 by nicolas           #+#    #+#              #
-#    Updated: 2024/08/31 19:15:56 by nprudenc         ###   ########.fr        #
+#    Updated: 2024/08/31 20:32:32 by nprudenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=CatDog
-SRCS=Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongDog.cpp WrongCat.cpp main.cpp
+SRCS=AAnimal.cpp Cat.cpp Dog.cpp Brain.cpp main.cpp
 GREEN=\033[1;32m
 BLUE=\033[1;34m
 RES=\033[0m

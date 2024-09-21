@@ -2,9 +2,10 @@
 # define CAT_HPP
 
 # include <iostream>
-# include "Animal.hpp"
+# include "AAnimal.hpp"
+# include "Brain.hpp"
 
-class Cat: public Animal {
+class Cat: public AAnimal {
 	public:
 		Cat();
 		Cat(Cat &Other);
@@ -12,6 +13,8 @@ class Cat: public Animal {
 		Cat &operator=(Cat &Other);
 
 		void makeSound() const;
+	private:
+		Brain *_brain;
 
 };
 
