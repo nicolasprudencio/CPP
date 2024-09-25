@@ -18,7 +18,7 @@ RES=\033[0m
 
 ${NAME}: ${SRCS}
 	@echo "${BLUE}Compiling...${RES}"
-	@c++ -std=c++98 ${SRCS} -o ${NAME}
+	@c++ -Werror -Wall -Wextra -std=c++98 ${SRCS} -o ${NAME}
 	@echo "${GREEN}Compiled successfully!${RES}"
 
 fclean:
