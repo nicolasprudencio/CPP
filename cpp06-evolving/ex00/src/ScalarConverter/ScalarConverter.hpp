@@ -2,16 +2,18 @@
 # define SCALAR_CONVERTER_HPP
 
 # include <string>
+# include <sstream> 
+# include <iostream>
 
 class ScalarConverter {
-    private:
-        ScalarConverter();
-    public:
-        ScalarConverter(const ScalarConverter &obj);
-        ScalarConverter &operator=(const ScalarConverter &obj);
-        ~ScalarConverter();
+	private:
+		ScalarConverter();
+	public:
+		ScalarConverter(const ScalarConverter &obj);
+		ScalarConverter &operator=(const ScalarConverter &obj);
+		~ScalarConverter();
 
-        static void convert(std::string &str);    
+		static void convert(std::string &str);
 };
 
 #endif // SCALAR_CONVERTER_HPP

@@ -1,12 +1,5 @@
 #include <string>
 
-bool    validateArgument(std::string str) {
-	char signalChar = str.find('-', 1) || str.find('+', 1);
-
-	if (signalChar) {
-		for (std::string::iterator it = str.begin(); it != str.end(); it++) {
-			if ()
-		}
-	}
+char	char_converter(const std::string &str) {
+	return static_cast<int>(str[0]);
 }
-

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME=scalarconverter
-SRCS=src/main.cpp src/InputValidator.cpp 
+SRCS=src/InputValidator.cpp src/ScalarConverter/ScalarConverter.cpp src/main.cpp
 GREEN=\033[1;32m
 BLUE=\033[1;34m
 RES=\033[0m

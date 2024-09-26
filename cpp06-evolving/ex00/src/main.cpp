@@ -14,25 +14,23 @@ int main(int ac, char **av) {
 		&printLessInf
 	};
 
-
 	if (ac != 2) {
 		std::cerr << "Error: invalid num arguments" << std::endl;
 		return (1);
 	}
-	try {
-		InputValidator::isValidInput(av[1]);
-		std::string input(av[1]);
-		// ScalarConverter::convert(input);
-	} catch (const std::exception &e) {
-		for (int i = 0; i < 6; i++) {
-			if (av[1] == err[i]) {
-				functions[i % 3]();
-				return (1);
-			}
+
+	for (int i = 0; i < 6; i++) {
+		if (av[1] == err[i]) {
+			functions[i % 3]();
+			return (1);
 		}
-		printDefaultErr();
-		return (1);
 	}
+
+	std::string input(av[1]);
+	ScalarConverter::convert(input);
+
+	
+	return (1);
 }
 
 void printNan() {
@@ -57,8 +55,5 @@ void printLessInf() {
 }
 
 void printDefaultErr() {
-	std::cout << "char: impossible" << std::endl;
-	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: impossible" << std::endl;
-	std::cout << "double: impossible" << std::endl;
+	std::cout << "Error: one or more conversions are impossible to display!" << std::endl;
 }
