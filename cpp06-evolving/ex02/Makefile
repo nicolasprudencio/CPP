@@ -1,58 +1,29 @@
-# Project name
-NAME := ./ex02
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/17 22:50:29 by nicolas           #+#    #+#              #
+#    Updated: 2024/07/24 21:47:46 by nicolas          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-# Compiler and flags
-CXX := c++
-CXXFLAGS := -Wall -Werror -Wextra -std=c++98
+NAME=typecast
+SRCS=src/Base.cpp main.cpp
+GREEN=\033[1;32m
+BLUE=\033[1;34m
+RES=\033[0m
 
-# Directories
-BUILD := build
+${NAME}: ${SRCS}
+	@echo "${BLUE}Compiling...${RES}"
+	@c++ -Werror -Wall -Wextra -std=c++98 ${SRCS} -o ${NAME}
+	@echo "${GREEN}Compiled successfully!${RES}"
 
-# Source files
-SOURCE := $(shell find ./ -type f -name "*.cpp")
+fclean:
+	@rm -fr ${NAME}
 
-# Object files
-OBJECTS := $(patsubst ./%,$(BUILD)/%,$(SOURCE:.cpp=.o))
+re: fclean ${NAME}
 
-# Includes
-INCLUDES := -I./
-
-define compile_source
-	$(CXX) -c $(CXXFLAGS) $(INCLUDES) -o $@ $<
-endef
-
-define create_dir
-	@mkdir -p $(dir $@)
-endef
-
-define compile_executable
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^
-endef
-
-define clean_objs
-	rm -rf $(BUILD)
-endef
-
-define clean_executable
-	rm -f $(NAME)
-endef
-
-all: $(NAME)
-
-$(NAME): $(OBJECTS)
-	$(call compile_executable)
-
-$(BUILD)/%.o: %.cpp
-	$(call create_dir)
-	$(call compile_source)
-
-clean:
-	$(call clean_objs)
-
-fclean: clean
-	$(call clean_executable)
-
-re: fclean all
-
-.PHONY: all clean fclean re Makefile
-.DEFAULT_GOAL = all
+.PHONY: re fclean
