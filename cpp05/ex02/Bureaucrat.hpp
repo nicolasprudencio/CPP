@@ -2,12 +2,21 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
-# include "Exceptions.hpp"
 # include "AForm.hpp"
 
 
 class Bureaucrat {
 	public:
+		class GradeTooHighException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+		class GradeTooLowException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		Bureaucrat();
 		Bureaucrat(const std::string name, int grade);
 		~Bureaucrat();
 		Bureaucrat(Bureaucrat &other);
@@ -18,6 +27,7 @@ class Bureaucrat {
 		void incrementGrade() throw(GradeTooHighException);
 		void decrementGrade() throw(GradeTooLowException);
 		void signForm(AForm &form);
+		void executeForm(AForm const &form);
 
 	private:
 		std::string const _name;

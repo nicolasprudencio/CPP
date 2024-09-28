@@ -1,5 +1,10 @@
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat(): _name("default") {
+	_grade = 1;
+	std::cout << "Bureaucrat " << _name << " created" << std::endl;
+}
+
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name) {
 	if (grade < 1) {
 		throw GradeTooHighException();
@@ -52,6 +57,14 @@ void Bureaucrat::decrementGrade() throw(GradeTooLowException) {
 }
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat const& bureaucrat) {
-    os << "Bureaucrat " << bureaucrat.getName() << " has grade " << bureaucrat.getGrade();
-    return os;
+	os << "Bureaucrat " << bureaucrat.getName() << " has grade " << bureaucrat.getGrade();
+	return os;
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+	return "Grade is too high";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+	return "Grade is too low";
 }

@@ -2,12 +2,21 @@
 # define FORM_HPP
 
 # include <iostream>
-# include "Exceptions.hpp"
 
 class Bureaucrat;
 
 class Form {
 	public:
+		class GradeTooHighException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+		class GradeTooLowException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		Form();
 		Form(const std::string name, int gradeToSign, int gradeToExecute) throw(GradeTooHighException, GradeTooLowException);
 		~Form();
 		Form(const Form &other);

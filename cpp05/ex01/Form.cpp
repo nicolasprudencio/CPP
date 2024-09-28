@@ -1,9 +1,14 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
+Form::Form() : _name("default"), _isSigned(false), _gradeToSign(1), _gradeToExecute(1) {
+	std::cout << "Form " << _name << " created." << std::endl;
+}
+
 Form::Form(const std::string name, int gradeToSign, int gradeToExecute)
 	throw(GradeTooHighException, GradeTooLowException)
-	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
+	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+{
 	if (gradeToSign < 1 || gradeToExecute < 1) {
 		std::cout << "Error at form create: " << std::endl;
 		throw GradeTooHighException();
@@ -62,4 +67,12 @@ std::ostream& operator<<(std::ostream& os, Form const& form) {
 	os << "Grade to Sign: " << form.getGradeToSign() << "\n";
 	os << "Grade to Execute: " << form.getGradeToExecute() << std::endl;
 	return os;
+}
+
+const char* Form::GradeTooHighException::what() const throw() {
+	return "FORM: Grade is too high";
+}
+
+const char* Form::GradeTooLowException::what() const throw() {
+	return "FORM: Grade is too low";
 }

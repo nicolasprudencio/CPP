@@ -2,23 +2,40 @@
 
 int main(void)
 {
-	Bureaucrat *bureaucrat = new Bureaucrat("John", 2);
-	Bureaucrat *bureaucrat2 = new Bureaucrat("Teddy", 150);
+	Bureaucrat bureaucrat("John", 2);
+	Bureaucrat bureaucrat2("Teddy", 149);
 
-	std::cout << *bureaucrat << std::endl;
-	std::cout << *bureaucrat2 << std::endl;
+	// try {
+	// 	Bureaucrat bureaucrat3("order", 0);
+	// } catch (Bureaucrat::GradeTooLowException &e) {
+	// 	std::cout << e.what() << std::endl;
+	// } catch (Bureaucrat::GradeTooHighException &e) {
+	// 	std::cout << e.what() << std::endl;
+	// }
+
+	// try {
+	// 	Bureaucrat bureaucrat4("last", 151);
+	// } catch (Bureaucrat::GradeTooLowException &e) {
+	// 	std::cout << e.what() << std::endl;
+	// } catch (Bureaucrat::GradeTooHighException &e) {
+	// 	std::cout << e.what() << std::endl;
+	// }
+
+	std::cout << bureaucrat << std::endl;
+	std::cout << bureaucrat2 << std::endl;
 
 	try {
-		bureaucrat->incrementGrade();
-		bureaucrat2->decrementGrade();
-	} catch (GradeTooLowException &e) {
+		bureaucrat.incrementGrade();
+		std::cout << bureaucrat.getName() << std::endl;
+		bureaucrat2.decrementGrade();
+		// bureaucrat2.decrementGrade();
+		// bureaucrat2.decrementGrade();
+	} catch (Bureaucrat::GradeTooLowException &e) {
 		std::cout << e.what() << std::endl;
-	} catch (GradeTooHighException &e) {
+	} catch (Bureaucrat::GradeTooHighException &e) {
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << *bureaucrat << std::endl;
-	delete bureaucrat;
-	delete bureaucrat2;
+	std::cout << bureaucrat << std::endl;
 
 	return 0;
 }

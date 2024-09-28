@@ -1,10 +1,5 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(): _name("default") {
-	_grade = 1;
-	std::cout << "Bureaucrat " << _name << " created" << std::endl;
-}
-
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name) {
 	if (grade < 1) {
 		throw GradeTooHighException();
@@ -48,12 +43,21 @@ void Bureaucrat::decrementGrade() throw(GradeTooLowException) {
 	_grade++;
 }
 
-void Bureaucrat::signForm(Form &form) {
+void Bureaucrat::signForm(AForm &form) {
 	try {
 		form.beSigned(*this);
 		std::cout << _name << " signed " << form.getName() << std::endl;
 	} catch (std::exception &e) {
-		std::cout << _name << " couldn’t sign " << form.getName() << " because " << std::endl << e.what() << std::endl;
+		std::cerr << _name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(AForm const &form) {
+	try {
+		form.execute(*this);
+		std::cout << _name << " executes " << form.getName() << std::endl;
+	} catch (std::exception &e) {
+		std::cout << _name << " couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
 	}
 }
 

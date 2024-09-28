@@ -3,12 +3,15 @@
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 
 int main() {
 	Bureaucrat bureaucrat("John Doe", 1);
-	AForm *formRobotomy = new RobotomyRequestForm("robotomando");
-	AForm *formShrubbery = new ShrubberyCreationForm("shrubbando");
-	AForm *formPardon = new PresidentialPardonForm("perdoando");
+	Intern intern;
+	AForm *formRobotomy = intern.makeForm("robotomy request" ,"robotomando");
+	AForm *formShrubbery = intern.makeForm("shrubbery creation" ,"shrubbando");
+	AForm *formPardon = intern.makeForm("presidential pardon","perdoando");
+	AForm *formUnknow = intern.makeForm("unknown","perdoando");
 
 	std::cout << std::endl << *formRobotomy << std::endl;
 	bureaucrat.executeForm(*formRobotomy);
@@ -32,6 +35,7 @@ int main() {
 	delete formRobotomy;
 	delete formShrubbery;
 	delete formPardon;
+	delete formUnknow;
 
 	return 0;
 }

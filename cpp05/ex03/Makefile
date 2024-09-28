@@ -6,12 +6,12 @@
 #    By: nprudenc <nprudenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/17 22:50:29 by nicolas           #+#    #+#              #
-#    Updated: 2024/09/21 23:09:21 by nprudenc         ###   ########.fr        #
+#    Updated: 2024/09/21 21:55:43 by nprudenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=bureaucrat
-SRCS=Bureaucrat.cpp main.cpp
+SRCS=Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp main.cpp
 GREEN=\033[1;32m
 BLUE=\033[1;34m
 RES=\033[0m
