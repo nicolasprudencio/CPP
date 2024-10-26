@@ -11,11 +11,12 @@ class MutantStack : public std::stack<T>
 		MutantStack();
 		MutantStack(const MutantStack &other);
 		MutantStack &operator=(const MutantStack &other);
-		~MutantStack() {}
+		~MutantStack();
 
-		// typedef typename std::stack<T>::container_type::iterator iterator;
-		// iterator begin() { return (std::stack<T>::c.begin()); }
-		// iterator end() { return (std::stack<T>::c.end()); }
+		typedef typename std::stack<T>::container_type::iterator iterator;
+
+		iterator begin();
+		iterator end();
 };
 
 #include "../src/MutantStack.tpp"

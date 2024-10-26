@@ -18,9 +18,6 @@ class Span {
 		void addNumber(int n);
 		int shortestSpan();
 		int longestSpan();
-		unsigned int getSize() const;
-		std::vector<int> getVec() const;
-		void setVec(std::vector<int> other);
 };
 
 

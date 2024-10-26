@@ -54,14 +54,3 @@ int Span::longestSpan() {
 	return aux[aux.size() - 1] - aux[0];
 }
 
-unsigned int Span::getSize() const {
-	return this->_n;
-}
-
-std::vector<int> Span::getVec() const {
-	return this->_vec;
-}
-
-void Span::setVec(std::vector<int> other) {
-	this->_vec = other;
-}
