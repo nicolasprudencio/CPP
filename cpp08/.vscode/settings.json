@@ -47,5 +47,6 @@
 		"*.tpp": "c",
 		"mutantstack.hpp": "c",
 		"list": "cpp"
-	}
+	},
+	"C_Cpp.default.compilerPath": "/usr/bin/gcc"
 }

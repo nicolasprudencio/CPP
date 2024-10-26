@@ -18,14 +18,24 @@ Span & Span::operator=(Span const & other) {
 	return *this;
 }
 
+std::vector<int> Span::getVec() const {
+	return _vec;
+}
+
 void Span::addNumber(int n) {
 	if (_size < _n) {
 		_vec.push_back(n);
 		this->_size = this->_size + 1;
 	} else {
-		throw std::overflow_error("Add number: no more space");
+		throw std::overflow_error("Add number: no more space for adding numbers");
 	}
 }
+
+void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+	for (std::vector<int>::iterator it = begin; it != end; ++it) 
+		addNumber(*it);
+}
+
 
 int Span::shortestSpan() {
 	if (_size < 2) {
@@ -54,3 +64,13 @@ int Span::longestSpan() {
 	return aux[aux.size() - 1] - aux[0];
 }
 
+std::ostream  &operator<<(std::ostream &os, Span const &src) {
+
+	std::vector<int> vec = src.getVec();
+
+	os << "Numbers: ";
+	for (std::vector<int>::const_iterator it = vec.begin(); it != vec.end(); ++it)
+		os << *it << " ";
+	os << std::endl;
+	return os;
+}
