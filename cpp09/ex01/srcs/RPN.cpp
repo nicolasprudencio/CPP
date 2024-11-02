@@ -12,13 +12,13 @@ RPN &RPN::operator=(const RPN &obj) {
 	return *this;
 }
 
-void RPN::validateInputArgument(const std::string &arg, std::stringstream &ss)
+void RPN::validateInputArgument(const std::string &arg)
 {
 	int memberCounter = 0;
 	int operatorCounter = 1;
 	int spaceCounter = std::count(arg.begin(), arg.end(), ' ');
 	
-	ss.str(arg);
+	std::stringstream ss(arg);
 	std::string token;
 
 	if (arg.find_first_not_of("0123456789+-*/ ") != std::string::npos)
@@ -40,9 +40,10 @@ void RPN::validateInputArgument(const std::string &arg, std::stringstream &ss)
 		throw std::invalid_argument("Error: invalid input argument");
 }
 
-int RPN::calculate(const std::string &input, std::stack<int> &stack)
+int RPN::calculate(const std::string &input)
 {
 	std::string token;
+	std::stack<int> stack;
 
 	for (size_t i = 0; i < input.length(); i++)
 	{

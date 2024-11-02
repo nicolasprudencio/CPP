@@ -12,8 +12,8 @@ class RPN {
 		RPN();
 		~RPN();
 
-		static void validateInputArgument(const std::string &arg, std::stringstream &ss);
-		static int calculate(const std::string &input, std::stack<int> &stack);
+		static void validateInputArgument(const std::string &arg);
+		static int calculate(const std::string &input);
 		static void rpnCalculator(std::stack<int> &stack, char token);
 	private:
 		RPN(const RPN &obj);
