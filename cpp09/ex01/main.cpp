@@ -1,26 +1,6 @@
 #include <iostream>
-#include <sstream>
 
-std::stringstream validateInputArgument(const std::string &arg)
-{
-	int memberCounter = 0;
-	int spaceCounter = 0;
-	std::stringstream ss(arg);
-	std::string token;
-
-	while (getline(ss, token, ' '))
-	{
-		bool isValidOperator = token[0] == '+' || token[0] == '-' || token[0] == '*' || token[0] == '/';
-		if (token.length() != 1 || (!std::isdigit(token[0]) && !isValidOperator))
-			throw std::invalid_argument("Error: invalid input arg: " + token);
-		std::cout << token << std::endl;
-	}
-	for (size_t i = 0; i < arg.length(); i++)
-		spaceCounter++;
-	if (memberCounter - spaceCounter != 1)
-		throw std::invalid_argument("Error: invalid input arg");
-	return ss;
-}
+#include "./includes/RPN.hpp"
 
 
 
@@ -31,8 +11,13 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
+
+	std::stack<int> stack;
+
 	try {
-		validateInputArgument(argv[1]);
+		std::stringstream ss;
+		RPN::validateInputArgument(argv[1], ss);
+		std::cout << RPN::calculate(argv[1], stack) << std::endl;
 	} catch (const std::invalid_argument &e) {
 		std::cerr << e.what() << std::endl;
 		return 1;
