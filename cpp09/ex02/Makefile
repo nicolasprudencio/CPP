@@ -1,11 +1,11 @@
-NAME = btc
+NAME = PmergeMe
 
 CXX = c++
 CXXFLAGS = -g -Wall -Werror -Wextra -std=c++98
 
 BUILD = build
 
-SRC_PATH = .
+SRC_PATH = . ./srcs
 
 SOURCE += $(foreach path, $(SRC_PATH), $(wildcard $(addprefix $(path)/, *.cpp)))
 
