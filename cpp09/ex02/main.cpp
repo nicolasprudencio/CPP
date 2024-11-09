@@ -4,7 +4,7 @@
 #include <limits>
 #include <cstdlib>
 #include <vector>
-#include <deque>
+#include <list>
 
 int isValidInput(std::string input)
 {
@@ -24,9 +24,9 @@ int isValidInput(std::string input)
 int main(int argc, char **argv)
 {
 	std::vector<int> vectorContainer;
-	std::deque<int> dequeContainer;
+	std::list<int> listContainer;
 
-	std::cout << argc << std::endl;
+	// std::cout << argc << std::endl;
 	if (argc <= 1) {
 		std::cout << "Usage: ./pmergeme 1 2 3 4 5..." << std::endl;
 		return 1;
@@ -36,30 +36,11 @@ int main(int argc, char **argv)
 		{
 			int nb = isValidInput(argv[i]);
 			vectorContainer.push_back(nb);
-			dequeContainer.push_back(nb);
+			listContainer.push_back(nb);
 		}
-		std::cout << "Before: " << std::endl;
-		for (std::vector<int>::iterator it = vectorContainer.begin(); it != vectorContainer.end(); it++)
-			std::cout << *it << " ";
-		std::cout << std::endl;
-		PmergeMe::mergeMe(vectorContainer);
-		std::cout << "After: " << std::endl;
-		for (std::vector<int>::iterator it = vectorContainer.begin(); it != vectorContainer.end(); it++)
-			std::cout << *it << " ";
-		std::cout << std::endl;
-		
-	/* ---------------------------------------------------------*/
+		PmergeMe::fordJhonson<std::vector<int>, std::vector<std::pair<int, int> > >(vectorContainer);
+		PmergeMe::fordJhonson<std::list<int>, std::list<std::pair<int, int> > >(listContainer);
 
-
-		std::cout << "Before: " << std::endl;
-		for (std::deque<int>::iterator it = dequeContainer.begin(); it != dequeContainer.end(); it++)
-			std::cout << *it << " ";
-		std::cout << std::endl;
-		PmergeMe::mergeMe(dequeContainer);
-		std::cout << "After: " << std::endl;
-		for (std::deque<int>::iterator it = dequeContainer.begin(); it != dequeContainer.end(); it++)
-			std::cout << *it << " ";
-		std::cout << std::endl;
 	} catch (const std::invalid_argument &e) {
 		std::cout << e.what() << std::endl;
 		return 1;
