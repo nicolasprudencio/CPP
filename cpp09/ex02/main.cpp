@@ -6,6 +6,7 @@
 #include <vector>
 #include <list>
 
+
 int isValidInput(std::string input)
 {
 	std::stringstream ss(input);
@@ -21,10 +22,12 @@ int isValidInput(std::string input)
 	return number;
 }
 
+#include <deque>
+
 int main(int argc, char **argv)
 {
 	std::vector<int> vectorContainer;
-	std::list<int> listContainer;
+	std::deque<int> listContainer;
 
 	// std::cout << argc << std::endl;
 	if (argc <= 1) {
@@ -39,7 +42,7 @@ int main(int argc, char **argv)
 			listContainer.push_back(nb);
 		}
 		PmergeMe::fordJhonson<std::vector<int>, std::vector<std::pair<int, int> > >(vectorContainer);
-		PmergeMe::fordJhonson<std::list<int>, std::list<std::pair<int, int> > >(listContainer);
+		PmergeMe::fordJhonson<std::deque<int>, std::deque<std::pair<int, int> > >(listContainer);
 
 	} catch (const std::invalid_argument &e) {
 		std::cout << e.what() << std::endl;
