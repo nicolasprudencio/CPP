@@ -4,7 +4,6 @@
 #include <limits>
 #include <cstdlib>
 #include <vector>
-#include <list>
 
 
 int isValidInput(std::string input)
@@ -27,9 +26,8 @@ int isValidInput(std::string input)
 int main(int argc, char **argv)
 {
 	std::vector<int> vectorContainer;
-	std::deque<int> listContainer;
+	std::deque<int> dequeContainer;
 
-	// std::cout << argc << std::endl;
 	if (argc <= 1) {
 		std::cout << "Usage: ./pmergeme 1 2 3 4 5..." << std::endl;
 		return 1;
@@ -39,10 +37,19 @@ int main(int argc, char **argv)
 		{
 			int nb = isValidInput(argv[i]);
 			vectorContainer.push_back(nb);
-			listContainer.push_back(nb);
+			dequeContainer.push_back(nb);
 		}
+
+		int vecStart =  clock();
 		PmergeMe::fordJhonson<std::vector<int>, std::vector<std::pair<int, int> > >(vectorContainer);
-		PmergeMe::fordJhonson<std::deque<int>, std::deque<std::pair<int, int> > >(listContainer);
+		int vecFinish = clock();
+
+		int lstStart =  clock();
+		PmergeMe::fordJhonson<std::deque<int>, std::deque<std::pair<int, int> > >(dequeContainer);
+		int lstFinish = clock();
+
+		std::cout << "vector: " << double(vecFinish - vecStart) / CLOCKS_PER_SEC << std::endl;
+		std::cout << "deque: " << double(lstFinish - lstStart) / CLOCKS_PER_SEC << std::endl;
 
 	} catch (const std::invalid_argument &e) {
 		std::cout << e.what() << std::endl;

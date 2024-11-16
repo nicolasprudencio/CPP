@@ -2,24 +2,18 @@
 #include <limits>
 #include <vector>
 
-template <typename T>
-void printPairContainer(T &container) {
-	for (typename T::iterator it = container.begin(); it != container.end(); it++)
-		std::cout << it->first << " " << it->second << std::endl;
-}
 
 template <typename SimpleT>
 void printContainer(SimpleT &container) {
 	for (typename SimpleT::iterator it = container.begin(); it != container.end(); it++)
-		std::cout << *it << std::endl;
+		std::cout << *it << " ";
+	std::cout << std::endl;
 }
 
 
 template <typename PairT>
 void sortPairs(PairT &container) {
 	typename PairT::iterator auxIt;
-	// int firstValue;
-	// int secondValue = std::numeric_limits<int>::max();
 
 	for (typename PairT::iterator it = container.begin(); it != container.end(); it++)
 	{
@@ -41,8 +35,6 @@ void sortPairs(PairT &container) {
 
 template <typename SimpleT, typename PairT>
 void splitOrderedElements(PairT& container, SimpleT& orderedContainer, SimpleT& unoredContainer) {
-	printPairContainer(container);
-	std::cout << "--------PairContainer--------" << std::endl;
 	for (typename PairT::iterator it = container.begin(); it != container.end(); it++)
 	{
 			orderedContainer.push_back(it->second);
@@ -61,18 +53,46 @@ void createPairContainer(SimpleT& container, PairT& pairContainer) {
 
 }
 
+template <typename SimpleT>
+void PmergeMe::mergeInsertion(SimpleT& orderedContainer, SimpleT& pendingList)
+{
+	SimpleT jacobsthalIndices = generateJacobSequence<SimpleT>(pendingList.size());
 
-template <typename SimpleT, typename PairT>
-std::vector<int> PmergeMe::generateBilola(int maxIndex, SimpleT cont) {
-	std::vector<int> sequence;
+	for (int i = jacobsthalIndices.size() - 1; i >= 0; --i)
+	{
+		size_t index = jacobsthalIndices[i];
+		if (index < pendingList.size()) 
+		{
+			typename SimpleT::iterator insertPos = std::lower_bound(
+				orderedContainer.begin(), orderedContainer.end(), pendingList[index]
+			);
+			orderedContainer.insert(insertPos, pendingList[index]);
+		}
+	}
+
+	for (size_t i = 0; i < pendingList.size(); ++i) {
+		if (std::find(jacobsthalIndices.begin(), jacobsthalIndices.end(), i) == jacobsthalIndices.end()) {
+			typename SimpleT::iterator insertPos = std::lower_bound(
+				orderedContainer.begin(), orderedContainer.end(), pendingList[i]
+			);
+			orderedContainer.insert(insertPos, pendingList[i]);
+		}
+	}
+}
+
+
+template <typename SimpleT>
+SimpleT PmergeMe::generateJacobSequence(int maxIndex) {
+	SimpleT sequence;
 	sequence.push_back(0);
 	sequence.push_back(1);
-	(void)cont;
-	while (sequence.back() < maxIndex) {
-		int nextValue = sequence.back() + 2 * sequence[sequence.size() - 2];
+
+	for (int i = 0; i < maxIndex; i++) {
+		int nextValue = sequence.back() + (2 * sequence[sequence.size() - 2]);
 		if (nextValue >= maxIndex) break;
 		sequence.push_back(nextValue);
 	}
+	sequence.erase(std::unique(sequence.begin(), sequence.end()), sequence.end());
 	return sequence;
 };
 
@@ -83,32 +103,26 @@ void PmergeMe::fordJhonson(SimpleT &container) {
 	SimpleT orderedContainer;
 	SimpleT pendingList;
 
-	if (container.size() % 2 != 0)
-	{
+	std::cout << "------------ Before ------------ " << std::endl;
+	printContainer(container);
+
+	if (container.size() % 2 != 0) {
 		lastValue = container.back();
 		container.pop_back();
 	}
 	createPairContainer(container, pairContainer);
 	sortPairs(pairContainer);
 	splitOrderedElements(pairContainer, orderedContainer, pendingList);
-	printContainer(orderedContainer);
-	std::cout << "----------------" << std::endl;
-	printContainer(pendingList);
-
-	std::vector<int> jacobsthalIndices = generateBilola(pendingList.size(), orderedContainer);
-	for (int i = jacobsthalIndices.size() - 1; i >= 0; --i) {
-		size_t index = jacobsthalIndices[i];
-		if (index < pendingList.size()) {
-			typename SimpleT::iterator insertPos = std::lower_bound(orderedContainer.begin(), orderedContainer.end(), pendingList[index]);
-			orderedContainer.insert(insertPos, pendingList[index]);
-		}
-	}
+	mergeInsertion(orderedContainer, pendingList);
 
 
 	if (lastValue != -1) {
-		typename SimpleT::iterator insertPos = std::lower_bound(orderedContainer.begin(), orderedContainer.end(), lastValue);
+		typename SimpleT::iterator insertPos = std::lower_bound(
+			orderedContainer.begin(), orderedContainer.end(), lastValue
+		);
 		orderedContainer.insert(insertPos, lastValue);
 	}
 
+	std::cout << "------------ After ------------ " << std::endl;
 	printContainer(orderedContainer);
-};
+}

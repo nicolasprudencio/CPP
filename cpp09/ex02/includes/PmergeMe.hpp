@@ -12,8 +12,10 @@ class PmergeMe {
 
 		template <typename SimpleT, typename PairT>
 		static void fordJhonson(SimpleT &container);
-		template <typename SimpleT, typename PairT>
-		static std::vector<int> generateBilola(int maxIndex, SimpleT cont);
+		template <typename SimpleT>
+		static SimpleT generateJacobSequence(int maxIndex);
+		template <typename SimpleT>
+		static void mergeInsertion(SimpleT& orderedContainer, SimpleT& pendingList);
 	private:
 		PmergeMe(const PmergeMe &obj);
 		PmergeMe &operator=(const PmergeMe &obj);
